@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Nanum_Myeongjo } from "next/font/google";
 import "./globals.css";
+import SideBar from "@/components/SideBar";
 
-const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
-  variable: "--font-geist-sans",
-  weight: "100 900",
-});
-const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
-  variable: "--font-geist-mono",
-  weight: "100 900",
+const primaryFont = Nanum_Myeongjo({
+  subsets: ["latin"],
+  weight: ["400", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -26,9 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${primaryFont.className} antialiased flex items-center gap-10`}
       >
-        {children}
+        <SideBar />
+
+        <main className="flex justify-center w-full">{children}</main>
       </body>
     </html>
   );
